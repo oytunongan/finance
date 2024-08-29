@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <div class="section">
+        <table>
+            <thead>
+                <tr>
+                    <th>Activity</th>
+                    <th>Symbol</th>
+                    <th>Price</th>
+                    <th>Shares</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data_history in data_history %}
+                    <tr>
+                        <td>{{ data_history.activity }}</td>
+                        <td>{{ data_history.stock }}</td>
+                        <td>{{ data_history.stock_price | usd }}</td>
+                        <td>{{ data_history.shares }}</td>
+                        <td>{{ data_history.activity_date }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

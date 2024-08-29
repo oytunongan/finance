@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Summary
+{% endblock %}
+
+{% block main %}
+    <div class="section">
+        <table>
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user_info in user_info %}
+                    <tr>
+                        <td>{{ user_info.stock }}</td>
+                        <td>{{ user_info.stock }}</td>
+                        <td>{{ user_info.shares }}</td>
+                        <td>{{ stock_prices[user_info.stock]["price"] | usd }}</td>
+                        <td>{{ ((user_info.shares) * (stock_prices[user_info.stock]["price"])) | usd }}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td style="font-weight:bold">Cash: {{ cash[0]["cash"] | usd }}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold">TOTAL: {{ total | usd }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <form action="/" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="deposit" placeholder="Deposit Amount" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Deposit Money</button>
+    </form>
+{% endblock %}
